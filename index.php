@@ -1,0 +1,57 @@
+<?php
+checkFunc(1000000); //1000000 
+
+// define @checkFunc   function for total number of prime bumber
+function checkFunc($n) 
+{ 
+    // Create a boolean array "prime[0..n]"  
+    // and initialize all entries it as true. 
+    // A value in prime[i] will finally be  
+    // false if i is Not a prime, else true. 
+    $prime = array_fill(0, $n+1, true); 
+  
+    for ($p = 2; $p*$p <= $n; $p++) 
+    { 
+        // If prime[p] is not changed,  
+        // then it is a prime 
+        if ($prime[$p] == true) 
+        { 
+            // Update all multiples of p 
+            for ($i = $p*$p; $i <= $n; $i += $p) 
+                $prime[$i] = false; 
+        } 
+    } 
+
+  $count = 1;
+  $sum = 0;
+  if($n >= 1000){
+    $p = 7;
+  }else{
+    $p = 2;
+  }
+    // Print all prime numbers 
+    for ($p; $p <= $n; $p++) 
+    {  
+        if ($prime[$p]) {
+            
+            $sum = $sum + $p;  
+            if($sum >= $n)
+                break;
+                $count++;
+                echo $p . " "; 
+           
+        }
+    }
+
+        // remove last extra record
+           $lastcount = $count-1;
+           $sum = $sum - $p;
+           
+        echo "<br><br>max number=".$n;
+        echo "<br>total prime number=".$lastcount;
+        echo "<br>sum of prime no.=".$sum;
+       
+}
+
+
+?>
